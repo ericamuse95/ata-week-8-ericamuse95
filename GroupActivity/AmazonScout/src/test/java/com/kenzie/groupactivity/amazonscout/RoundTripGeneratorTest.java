@@ -14,7 +14,7 @@ public class RoundTripGeneratorTest {
     private RoundTripGenerator roundTripGenerator;
 
     @BeforeEach
-    private void setup() {
+    void setup() {
         roundTripGenerator = new RoundTripGenerator();
     }
 
