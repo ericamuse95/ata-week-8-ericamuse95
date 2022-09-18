@@ -8,19 +8,26 @@ public class TrackedBox {
     private String boxId;
     private String trackingId;
 
-    public TrackedBox() {
-
-    }
-
-    public String getTrackingId() {
-        return null;
+    public TrackedBox(String boxId) {
+        this.boxId = boxId;
     }
 
     public String getBoxId() {
-        return null;
+        return this.boxId;
+    }
+
+    public String getTrackingId() {
+        return this.trackingId;
     }
 
     public String createTrackingId() {
-        return null;
+        //returns trackingID by concatenating boxId with a random id
+        String uuid = UUID.randomUUID().toString();
+        trackingId = boxId + uuid;
+        return trackingId;
     }
+
+
+
+
 }

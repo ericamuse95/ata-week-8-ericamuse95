@@ -1,5 +1,8 @@
 package com.kenzie.groupactivity.amazonscout;
 
+import com.amazonaws.services.dynamodbv2.xspec.N;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,7 +27,17 @@ public class RoundTripGenerator {
      * @return A *new* List with the full round trip sequence of
      *         Navigation steps, beginning with a copy of the {@code outboundSteps}
      */
-    public List<NavigationStep> generateRoundTrip(List<NavigationStep> outboundSteps) {
-        return Collections.emptyList();
+    public static List<NavigationStep> generateRoundTrip(List<NavigationStep> outboundSteps) {
+//        create new list for the roundtrip steps, that contains the outbound steps
+        List<NavigationStep> roundtrip = new ArrayList<>(outboundSteps);
+//        add the steps to turn around
+        roundtrip.addAll(NavigationStep.turnAround());
+//        iterate over outbound steps in reverse order (use reversedSteps to do this)
+        for(NavigationStep navigationStep : NavigationStep.reversedSteps(outboundSteps)){
+//        add NavigationStep.reverseNavigationStep(navigationStep) to the roundtrip steps list
+            roundtrip.add(NavigationStep.reverseNavigationStep(navigationStep));
+        }
+//        return roundtrip steps
+        return roundtrip;
     }
 }
